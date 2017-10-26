@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../services/api.service';
+import { TypeTraining } from '../models/type-training';
+import { Observable } from 'rxjs/Rx';
+
 
 @Component({
   selector: 'app-types-training',
@@ -7,7 +10,9 @@ import { ApiService } from '../services/api.service';
   styleUrls: ['./types-training.component.css']
 })
 export class TypesTrainingComponent implements OnInit {
-  types_trainings:any;
+
+  types_trainings:Observable<TypeTraining[]>;
+
   constructor(private apiService: ApiService) { }
 
   ngOnInit() {

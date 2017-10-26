@@ -1,27 +1,28 @@
 import { Injectable } from '@angular/core';
+import { Http, Response } from '@angular/http';
+import { Observable }     from 'rxjs/Observable';
+import 'rxjs/add/operator/map';
+import 'rxjs/Rx';
+import { TypeTraining } from '../models/type-training';
 
 @Injectable()
 export class ApiService {
-  api_url = "http:localhost:3000/api/v1/";
-  constructor() { }
+  api_url = "http://localhost:3000/types_training";
+  constructor(private http: Http) { }
 
-  getTypesTraining(){
-    return   [
-      {
-          "name":"Gimnasio",
-          "description":"Prueba de datos",
-          "image_link":"https://thumbs.dreamstime.com/b/icono-del-gimnasio-50358669.jpg"
-      },
-      {
-          "name":"Calistenia",
-          "description":"Prueba de datos 2",
-          "image_link":"https://image.spreadshirtmedia.net/image-server/v1/mp/compositions/T812A1PA1667PT17X79Y60D138365788S16/views/1,width=300,height=300,appearanceId=1,backgroundColor=E8E8E8/noir-callisthenie-t-shirt-premium-homme.jpg"
-      },
-      {
-          "name":"Running",
-          "description":"Prueba de datos 3",
-          "image_link":"https://previews.123rf.com/images/bitontawan02/bitontawan021412/bitontawan02141200004/35005457-icono-correr-Foto-de-archivo.jpg"
-      }
-    ];
+  getTypesTraining(): Observable<TypeTraining[]> {
+    return this.http.get(this.api_url).map((response: Response) => response.json());
   }
+  addTypeTraining(type_training: Object): Observable<TypeTraining[]>  {
+    return this.http.post(this.api_url, type_training)
+      .map((response: Response) => response.json())
+      .catch((error: any) => Observable.throw(error.json().error || { message: 'Error del servidor' }));
+  }
+
+  getTypeTraining(id: String): Observable<TypeTraining[]> {
+  return this.http.get(this.api_url+'/'+id)
+    .map((response: Response) => response.json())
+  }
+
+
 }
