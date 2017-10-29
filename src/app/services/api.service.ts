@@ -4,6 +4,8 @@ import { Observable }     from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/Rx';
 import { TypeTraining } from '../models/type-training';
+import { Training } from '../models/training';
+import { Exercise } from '../models/exercise';
 
 @Injectable()
 export class ApiService {
@@ -20,14 +22,19 @@ export class ApiService {
   }
 
   getTypeTraining(id: String): Observable<TypeTraining[]> {
-  return this.http.get(this.api_url+'/'+id)
-    .map((response: Response) => response.json())
+    return this.http.get(this.api_url+'/'+id)
+      .map((response: Response) => response.json())
   }
 
   updateTypeTraining(training: Object): Observable<TypeTraining[]> {
     return this.http.put(this.api_url+'/'+training["_id"], training)
       .map((response: Response) => response.json())
       .catch((error:any) => Observable.throw(error.json().error || {message:"Error del Servidor"}));
+  }
+
+  getTrainings(id: String): Observable<Training[]>{
+    return this.http.get(this.api_url+'/'+id+"/trainings")
+      .map((response: Response) => response.json())
   }
 
 }

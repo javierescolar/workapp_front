@@ -17,9 +17,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { TypesTrainingComponent } from './types-training/types-training.component';
 import { TypesTrainingCreateComponent } from './types-training-create/types-training-create.component';
 import { TypesTrainingEditComponent } from './types-training-edit/types-training-edit.component';
-
-
-
+import { TrainingsComponent } from './trainings/trainings.component';
 
 
 @NgModule({
@@ -29,7 +27,8 @@ import { TypesTrainingEditComponent } from './types-training-edit/types-training
     DashboardComponent,
     TypesTrainingComponent,
     TypesTrainingCreateComponent,
-    TypesTrainingEditComponent
+    TypesTrainingEditComponent,
+    TrainingsComponent
   ],
   imports: [
     routes,
