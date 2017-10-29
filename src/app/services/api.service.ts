@@ -24,5 +24,10 @@ export class ApiService {
     .map((response: Response) => response.json())
   }
 
+  updateTypeTraining(training: Object): Observable<TypeTraining[]> {
+    return this.http.put(this.api_url+'/'+training["_id"], training)
+      .map((response: Response) => response.json())
+      .catch((error:any) => Observable.throw(error.json().error || {message:"Error del Servidor"}));
+  }
 
 }

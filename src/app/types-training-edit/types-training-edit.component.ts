@@ -28,8 +28,19 @@ export class TypesTrainingEditComponent implements OnInit {
          this.training.image_link= data['image_link'];
         },
         error => console.log(<any>error));
+
         console.log("el objeto");
         console.log(this.training);
   }
+
+  updateTypeTraining(training) {
+    this.apiServices.updateTypeTraining(training)
+      .subscribe(
+        image => {
+          console.log(training);
+        },
+        error => console.log(<any>error)
+      );
+}
 
 }
