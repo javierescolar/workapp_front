@@ -34,7 +34,7 @@ export class ApiService {
 
   getTrainings(id: String): Observable<Training[]>{
     return this.http.get(this.api_url+'/'+id+"/trainings")
-      .map((response: Response) => response.json())
+      .map((response: Response) => response.json());
   }
 
 }

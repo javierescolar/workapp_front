@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ApiService } from '../services/api.service';
 import { Training } from '../models/training';
+import { Exercise } from '../models/exercise';
+import { TypeTraining } from '../models/type-training';
 import { Observable } from 'rxjs/Rx';
 
 @Component({
@@ -11,16 +13,19 @@ import { Observable } from 'rxjs/Rx';
 })
 export class TrainingsComponent implements OnInit {
 
-  trainings:Observable<Training[]>;
+  trainings: Observable<Training[]>;
   id: String;
+  toggle: boolean;
   constructor(private apiService: ApiService,private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
+    this.toggle = false;
     this.activatedRoute.params.subscribe(params => this.id = params['id']);
-    console.log("Obtenemos el id:" + this.id);
     this.trainings = this.apiService.getTrainings(this.id);
-    console.log("obtenemos los objetos... "+ this.trainings);
-    console.log(this.trainings);
+  }
+
+  toggleExercises(){
+    this.toggle = (this.toggle)? false:true;
   }
 
 }
