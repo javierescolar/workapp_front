@@ -18,6 +18,7 @@ import { TypesTrainingComponent } from './types-training/types-training.componen
 import { TypesTrainingCreateComponent } from './types-training-create/types-training-create.component';
 import { TypesTrainingEditComponent } from './types-training-edit/types-training-edit.component';
 import { TrainingsComponent } from './trainings/trainings.component';
+import { ExerciseComponent } from './exercise/exercise.component';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { TrainingsComponent } from './trainings/trainings.component';
     TypesTrainingComponent,
     TypesTrainingCreateComponent,
     TypesTrainingEditComponent,
-    TrainingsComponent
+    TrainingsComponent,
+    ExerciseComponent
   ],
   imports: [
     routes,

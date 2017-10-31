@@ -1,17 +1,19 @@
+<div *ngIf="(trainings | async)?.length==0">No trainings found.
+</div>
 <div *ngFor="let training of trainings | async" class="col-md-12 panel panel-default">
   <div class="panel-heading panel-margin">
-    <span *ngIf="!toggle" (click)="toggleExercises()" class="glyphicon glyphicon-chevron-down"></span>
-    <span *ngIf="toggle" (click)="toggleExercises()" class="glyphicon glyphicon-chevron-up"></span>
+    <span *ngIf="!toggles[training._id]" (click)="toggleExercises(training._id)" class="glyphicon glyphicon-chevron-down"></span>
+    <span *ngIf="toggles[training._id]" (click)="toggleExercises(training._id)" class="glyphicon glyphicon-chevron-up"></span>
     {{training.name}}
   </div>
   <div class="panel-body">
     <img src="{{training.image_link}}" class="training-images" /> {{training.description}}
-    <p>{{training.toggle}}</p>
   </div>
-  <div *ngIf="toggle">
+  <div *ngIf="toggles[training._id]">
     <div *ngFor="let exercise of training.exercises" class="col-md-12 panel panel-default">
       <div class="panel-heading panel-margin">{{exercise.name}}</div>
         <img src="{{exercise.image_link}}" class="training-images" />{{exercise.description}}
+        <a (click)="selectedExercise(exercise)" [routerLink]="['/dashboard/types_training/',training._id,'trainings',exercise.name.replace(' ','_')]" class="btn btn-primary">Go</a>
     </div>
   </div>
 

@@ -2,9 +2,7 @@ import {Exercise} from './exercise';
 import {TypeTraining} from './type-training';
 
 export class Training {
-  
-  public toggle: string = "holaaa";
-
+  private toggle: string;
   constructor(
               public _id:string,
               public type_training_id: TypeTraining,
@@ -13,9 +11,11 @@ export class Training {
               public image_link:string,
               public exercises: Array<Exercise>
             ) {
-
-
+              this.toggle = "hola";
   }
 
+  public getToggle() {
+    return this.toggle;
+  }
 
 }
